@@ -1,0 +1,152 @@
+body{
+    background: #f4f4f4;
+}
+.container{
+    width:40vw;
+    height:55vw; /*auto*/
+    background: rgba(240, 240, 240, 0.94);
+    margin: 0 auto;
+    margin-top: 2vw;
+    -webkit-box-shadow: rgba(226, 226, 226, 0.73) 0px 0px 2px;
+    -moz-box-shadow: rgba(226, 226, 226, 0.73) 0px 0px 2px;
+    box-shadow: rgba(226, 226, 226, 0.73) 0px 0px 2px;
+}
+.user_box{
+    display: inline-block;
+    width:5vw;
+    height:5vw;
+    margin-top: 2vw;
+    margin-left: 2vw;
+}
+.user_box img{ /*图片*/
+    border-radius: 50%;
+    width:5vw;
+    height:5vw;
+}
+.user_info{ /*作者信息*/
+    display: inline-block;
+   /* background-color: #cdc081;*/
+}
+.title{
+    width:38vw;
+    height: auto; /*高度自动*/
+    /*margin-left: 1vw;*/
+   /* background: sienna;*/
+}
+.middle{
+    width:38vw;
+    height:20vw;
+/*    margin-left: 1vw;*/
+    margin-top: 1vw;
+    background: #d6d6d6;
+    background-image: url("../../../statics/images/4.jpg");
+}
+.middle_img{
+    width:7vw;
+    height: 7vw;
+   /* background-color: #ff9d9e;*/
+    margin:auto;
+   padding-top: 6vw;
+    cursor: pointer;
+}
+.middle img{
+    width:7vw;
+    height:7vw;
+    margin: auto;
+}
+/*操作*/
+.operate{
+    width:38vw;
+    height:3vw;
+/*    margin-left: 1vw;*/
+    margin-top: 1vw;
+   /* background: #858585;*/
+    border-bottom:1px solid rgba(163, 163, 163, 0.27);
+}
+/*图片间隔*/
+.img_jiange{
+    margin-left: 2vw;
+    cursor: pointer;
+}
+.zan_num{
+    float: left;
+    width:38vw;
+    height:auto;
+/*    margin-left: 1vw;*/
+    margin-top: 6px;
+    /*background: saddlebrown;*/
+    color: #38bb5d;
+}
+/*评论盒子*/
+.pinlun_box{
+    width:38vw;
+    height:auto;
+/*    margin-left: 1vw;*/
+    margin-top: 2vw;
+}
+.pinlun_userImg{
+    display: inline-block;
+    width:2vw;
+    height:2vw;
+/*    margin-left: 1vw;*/
+
+}
+.pinlun_userImg img{
+    width:2vw;
+    height:2vw;
+    border-radius: 50%;
+}
+.write_pl{
+    width:38vw;
+    height:auto;
+}
+.write{
+    width:38vw;
+    border-radius: 1px;
+    border: 1px solid rgba(182, 182, 182, 0.62);
+    color: rgba(143, 143, 143, 0.69);
+    font-size: 0.8rem;
+    padding-left: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.publish{
+    background: #38bb5d;
+    width:5vw;
+    height:2vw;
+    margin-top: 1.4vw;
+    float: right;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 幼圆;
+}
+.record_box{
+
+    position: fixed;
+    margin-left: 90vw;
+    margin-top: 24vw;
+    cursor: pointer;
+}
+.close_btn{
+    background: rgba(0,158,0,0.67);
+    border: none;color:white;
+    margin-left:1vw ;
+}
+.btn_jiange{
+    margin-right:4vw ;
+    float: right;
+}
+.toLeft{
+
+    margin-left: -11vw;
+}
+/*弹窗背景颜色*/
+.a{
+    background-image:url("../../images/record/record_bg.jpg")
+}
+/*播放图标*/
+.play{
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+     http://www.springframework.org/schema/util
+     http://www.springframework.org/schema/util/spring-util.xsd"> <!--1、配置处理器映射器
+        1、配置处理器映射器
+        2、配置处理器适配器
+        3、配置视图解析器
+        4、加载controller和service到容器 -->
+    <!-- 注解扫描包：不在去配置单个bean -->
+    <context:component-scan base-package="cn.jason.controller"/>
+    <context:component-scan base-package="cn.jason"/>
+    <!-- 注解驱动开启注解（代替处理器映射器和适配器） conversion-service="conversionService"：conversion-service就是一个bean，自定义参数绑定（比如页面中日期串转成日期类型）  validator="validator"校验  ：
+    conversion-service="conversionService" validator="validator"-->
+    <mvc:annotation-driven/>
+    <!--注解的处理器映射器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <!--注解的适配器 必须和注解的映射器同时用-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+<!--视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/audio/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--解析静态资源-->
+    <mvc:resources mapping="/statics/**" location="/statics/"/>
+</beans>

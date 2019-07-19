@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- IOC注解组件扫描 -->
+	<context:component-scan base-package="cn.jason.mapper"/>
+	<context:component-scan base-package="cn.jason"/>
+	<!--加载属性文件-->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- 数据源 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+ 	</bean>
+	<!--配置sqlSessionFactory-->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+	</bean>
+	<!--配置SqlSessionTemplate-->
+	<!--<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+-->
+	<!--mapper扫描器-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.jason.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+	<!-- 事务管理 : DataSourceTransactionManager dataSource:引用上面定义的数据源-->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+ 	</bean>
+	<!--配置声明式事务 XML版-->
+	<!--<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="NEVER"/>
+			<tx:method name="set*" propagation="NEVER"/>
+			<tx:method name="add*" propagation="REQUIRED"/> &lt;!&ndash;必须要有事务&ndash;&gt;
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="find*" propagation="SUPPORTS"/> &lt;!&ndash;support  有事务就执行事务 ，没有事务就不执行事务&ndash;&gt;
+			<tx:method name="update*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="txpoincut" expression="execution(* cn.jason.service.serviceImp.*(..))"/>
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="txpoincut"/>
+	</aop:config>-->
+	<!--配置声明式事务 注解版-->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	<!-- 装配HelloSpring -->
+<!--
+	<bean class="cn.jason.temp.bdqn.entity.HelloSpring" id="helloSpring">
+		<property name="msg" value="Hello Spring!!!"></property>
+	</bean>
+	
+	
+	<bean class="cn.jason.temp.bdqn.entity.A3Paper" id="a3Paper">
+		<property name="size" value="A3"></property>
+	</bean>
+	<bean class="cn.jason.temp.bdqn.entity.A4Paper" id="a4Paper">
+		<property name="size" value="A4"></property>
+	</bean>
+	
+	<bean class="cn.jason.temp.bdqn.entity.GrayInkBox" id="grayInkBox">
+		<property name="color" value="gray"></property>
+	</bean>
+	<bean class="cn.jason.temp.bdqn.entity.ColorInkBox" id="colorInkBox">
+		<property name="color" value="red"></property>
+	</bean>
+	
+	<bean class="cn.jason.temp.bdqn.entity.Printer" id="printer1">
+		<property name="inkBox" ref="colorInkBox"></property>
+		<property name="paper" ref="a3Paper"></property>
+	</bean>
+	<bean class="cn.jason.temp.bdqn.entity.Printer" id="printer2">
+		<property name="inkBox" ref="grayInkBox"></property>
+		<property name="paper" ref="a3Paper"></property>
+	</bean>-->
+</beans>
